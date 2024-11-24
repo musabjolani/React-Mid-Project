@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import './App.css'
 import User from './User';
 
@@ -20,7 +18,7 @@ function UsersPage() {
   <div  style={usersPageStyle}>
     <label>Search</label>
     <input style={{}}size="" type="text"/>
-    <button style={{float:"right"}}>Add</button>
+    <button style={{float:"right",marginRight:"7px"}}>Add</button>
     <User></User>
     <User></User>
     <User></User>
