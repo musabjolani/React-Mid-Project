@@ -6,7 +6,7 @@
   font-size: small;
   color-scheme: light dark;
   color: rgba(18, 2, 2, 0.87);
-  background-color: #8dd010;
+  
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,7 +28,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: green;
+  
 }
 
 h1 {
@@ -54,6 +54,7 @@ button:hover {
 
 label
 {
+  margin-left: 8px ;
   display: inline-block;
   width: 60px;
 }
