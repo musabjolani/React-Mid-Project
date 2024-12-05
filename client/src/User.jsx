@@ -1,36 +1,39 @@
 
 import { useState } from 'react'
 import './App.css'
+import { Link } from 'react-router';
 
 function User() {
   
-const [bordercolor,setBorderColor]=useState("red");
+  const [bordercolor,setBorderColor]=useState("red");
+  const [toggleOthers,setToggleOthers]=useState(false);
 
-  const userStyle=
-{
-  "margin-top":"10px",
-  "border":"1.5px solid ",
-  "height":"240px",
-  "width" : "230px",
-  "padding": "0.5rem",
-  
-}
+    const userStyle=
+  {
+    "margin-top":"10px",
+    "border":"1.5px solid ",
+    "height":toggleOthers ? "260px" :"160px",
+    "width" : "90%",
+    "padding": "0.5rem",
+    
+  }
 
 
-return (
-<div  style={{...userStyle,borderColor:bordercolor}}>
-    <label>ID</label>  1 <br/>
-    <label>Name</label>
-    <input style={{}}size="" type="text"/> 
-    <br/>
-    <label>Email</label>
-    <input style={{}}size="" type="text"/>
-    <div style={{ display :"inline-block", width: "100%",marginTop :"10px"}}>
-      <button style={{float:"left",backgroundColor:"grey"}}>Other Data</button>
-      <button style={{float:"right" ,}}>Delete</button>
-      <button style={{float:"right",marginRight:"5px"}}>Update</button>
+  return (
+  <div  style={{...userStyle,borderColor:bordercolor}} onClick={()=>setToggleOthers(false)}>
+    <div style={{display:"inline-block"}}>
+      <Link to={`/otherdata`}> ID</Link>1 <br/>
+      <label>Name</label>
+      <input style={{}}size="" type="text"/> 
+      <br/>
+      <label>Email</label>
+      <input style={{}}size="" type="text"/>
+      <br/>
+      <button style={{float:"left",marginTop:"15px", backgroundColor:"grey"}}
+            onMouseOver={()=>setToggleOthers(true)}>Other Data</button>
     </div>
-    <div style={{ margin:"10px 0px 0px -5px", paddingLeft:"0.5rem", border:"1px solid grey",borderRadius:"30px"}}>
+      {/*-- other Data  */}
+    <div style={{ display:(toggleOthers ? 'block'  : "none") ,  margin:"10px 0px 0px -5px", paddingLeft:"0.5rem", border:"1px solid grey",borderRadius:"30px" }}>
         <label>Street</label>
         <input style={{}}size="" type="text"/>
         <br/>
@@ -39,9 +42,13 @@ return (
         <br/>
         <label>Zip Code</label>
         <input style={{}}size="" type="text"/>
-      </div>
+    </div>
+    <div style={{ display :"inline-block", width: "100%",marginTop :"8px"}}>
+      <button style={{float:"right" ,}}>Delete</button>
+      <button style={{float:"right",marginRight:"5px"}}>Update</button>
+    </div>
   </div>
-)
+  )
 }
 
 export default User

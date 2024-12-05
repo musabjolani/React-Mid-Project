@@ -1,14 +1,12 @@
 #root {
 
-  width:400px;
-  height:450px;
+  width:650px;
+  height:350px;
   max-height: 550px;
   margin: 30px;
   padding-top: 2rem;
   padding-left: 1rem;
-  /*text-align: center;*/
-  background-color: red;
- 
+  
 }
 
 input[type=text]
@@ -18,13 +16,13 @@ input[type=text]
 
 }
 
-#usersPage
+.usersPage
 {
-  background-color: yellowgreen;
   border-radius: 20px;
   border:1.5px solid grey;
-  height: fit-content;
-  width: fit-content;
+ overflow: scroll;
+  padding: 0.5rem;
+  height: 420px;
   
 }
 
