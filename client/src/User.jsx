@@ -3,12 +3,14 @@ import { useState } from 'react'
 import './App.css'
 import { Link } from 'react-router';
 
-function User() {
+function User({user}) {
   
   const [bordercolor,setBorderColor]=useState("red");
   const [toggleOthers,setToggleOthers]=useState(false);
 
-    const userStyle=
+  
+
+  const userStyle=
   {
     "margin-top":"10px",
     "border":"1.5px solid ",
@@ -24,10 +26,10 @@ function User() {
     <div style={{display:"inline-block"}}>
       <Link to={`/otherdata`}> ID</Link>1 <br/>
       <label>Name</label>
-      <input style={{}}size="" type="text"/> 
+      <input style={{width:"170px"}} type="text" value={user.name}/> 
       <br/>
       <label>Email</label>
-      <input style={{}}size="" type="text"/>
+      <input style={{width:"170px"}} type="text" value={user.email}/>
       <br/>
       <button style={{float:"left",marginTop:"15px", backgroundColor:"grey"}}
             onMouseOver={()=>setToggleOthers(true)}>Other Data</button>
@@ -35,13 +37,13 @@ function User() {
       {/*-- other Data  */}
     <div style={{ display:(toggleOthers ? 'block'  : "none") ,  margin:"10px 0px 0px -5px", paddingLeft:"0.5rem", border:"1px solid grey",borderRadius:"30px" }}>
         <label>Street</label>
-        <input style={{}}size="" type="text"/>
+        <input  type="text" value={user.street}/>
         <br/>
         <label>City</label>
-        <input style={{}}size="" type="text"/>
+        <input  type="text" value={user.city}/>
         <br/>
         <label>Zip Code</label>
-        <input style={{}}size="" type="text"/>
+        <input  type="text" value={user.zipcode}/>
     </div>
     <div style={{ display :"inline-block", width: "100%",marginTop :"8px"}}>
       <button style={{float:"right" ,}}>Delete</button>
