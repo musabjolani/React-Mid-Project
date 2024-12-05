@@ -1,15 +1,32 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { Link } from 'react-router';
+import { getAll } from './utils/dbUtils';
 
 function User({user}) {
   
+  const URL =`http://localhost:3300/todos/${user.id}`;
+
   const [bordercolor,setBorderColor]=useState("red");
   const [toggleOthers,setToggleOthers]=useState(false);
 
+  const [todos,setTodos]=useState({});
   
+  const  IsTasksCompleted=(todos)=> {
+    return todos.every(task => task.completed === true);
+  }
+  useEffect(()=>{
 
+  const getTodos=async()=>{
+    const {data}=await getAll(URL);
+    setTodos(data);
+  };
+    getTodos();
+    setBorderColor(IsTasksCompleted(todos) ? "green":"red")
+    },[])
+
+    
   const userStyle=
   {
     "margin-top":"10px",
