@@ -1,7 +1,7 @@
 #root {
 
   width:650px;
-  height:450px;
+  height:350px;
   max-height: 550px;
   margin: 30px;
   padding-top: 2rem;
@@ -20,10 +20,9 @@ input[type=text]
 {
   border-radius: 20px;
   border:1.5px solid grey;
-  height: fit-content;
-  width: fit-content;
+ overflow: scroll;
   padding: 0.5rem;
-  overflow:"scroll";
+  height: 420px;
   
 }
 
