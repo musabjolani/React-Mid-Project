@@ -21,9 +21,10 @@ function User({user}) {
   const getTodos=async()=>{
     const {data}=await getAll(URL);
     setTodos(data);
+    setBorderColor(IsTasksCompleted(data) ? "green":"red")
   };
     getTodos();
-    setBorderColor(IsTasksCompleted(todos) ? "green":"red")
+   
     },[])
 
     

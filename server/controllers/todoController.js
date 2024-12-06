@@ -5,7 +5,8 @@ const todoReq=require("../services/todoService")
 router.get("/:userId",async(req,res)=>{
  try{
     const { userId } = req.params;
-    res.json(await todoReq.getTodosByUserId(userId))
+    const todos=await todoReq.getTodosByUserId(userId);
+    res.json(todos.map((task)=>{return {completed:task.completed}}))
 } catch (error) {
     res.status(404).json(error.message);
 }
