@@ -9,7 +9,6 @@ function UsersPage() {
   const[users,setUsers]=useState([]);
   const[search,setSearch]=useState("");
 
-
  
 
 useEffect(() => {
@@ -35,7 +34,7 @@ useEffect(() => {
   return (
   <div   className="usersPage">
     <label>Search</label>
-    <input style={{}}size="" onChange={(e)=>setSearch(e.target.value)} type="text"/>
+    <input placeholder='Name or Email' onChange={(e)=>setSearch(e.target.value)}   type="text"/>
     <button style={{float:"right",marginRight:"7px"}}>Add</button>
     {
       users.map((user)=>(<User key={user._id} user={user}/>))

@@ -44,10 +44,10 @@ function User({user}) {
     <div style={{display:"inline-block"}}>
       <Link to={`/otherdata`}> ID</Link>1 <br/>
       <label>Name</label>
-      <input style={{width:"170px"}} type="text" value={user.name}/> 
+      <input style={{width:"170px"}} type="text" value={user.name} readOnly/> 
       <br/>
       <label>Email</label>
-      <input style={{width:"170px"}} type="text" value={user.email}/>
+      <input style={{width:"170px"}} type="text" value={user.email} readOnly />
       <br/>
       <button style={{float:"left",marginTop:"15px", backgroundColor:"grey"}}
             onMouseOver={()=>setToggleOthers(true)}>Other Data</button>
@@ -55,13 +55,13 @@ function User({user}) {
       {/*-- other Data  */}
     <div style={{ display:(toggleOthers ? 'block'  : "none") ,  margin:"10px 0px 0px -5px", paddingLeft:"0.5rem", border:"1px solid grey",borderRadius:"30px" }}>
         <label>Street</label>
-        <input  type="text" value={user.street}/>
+        <input  type="text" value={user.street} readOnly/>
         <br/>
         <label>City</label>
-        <input  type="text" value={user.city}/>
+        <input  type="text" value={user.city} readOnly/>
         <br/>
         <label>Zip Code</label>
-        <input  type="text" value={user.zipcode}/>
+        <input  type="text" value={user.zipcode} readOnly/>
     </div>
     <div style={{ display :"inline-block", width: "100%",marginTop :"8px"}}>
       <button style={{float:"right" ,}}>Delete</button>
