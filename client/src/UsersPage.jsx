@@ -7,37 +7,38 @@ function UsersPage() {
   
   const URL="http://localhost:3300/users";
   const[users,setUsers]=useState([]);
-  const[search,setSearch]=useState("");
-
+  const[filteredUsers,setFilteredUsers]=useState([]);
  
 
 useEffect(() => {
-    const getUsers = async () => {
-        
-            const { data } = await getAll(URL);
-            const lowerCaseSearch = search.toLowerCase();
+  const getUsers = async () => {
+    const { data } = await getAll(URL);
+      
+    setUsers(data);
+    setFilteredUsers(data);
+  };
 
-            const filteredUsers = search
-                ? data.filter(user => 
-                    user.name.toLowerCase().includes(lowerCaseSearch) || 
-                    user.email.toLowerCase().includes(lowerCaseSearch)
-                )
-                : data;
+  getUsers();
+}, []);
 
-            setUsers(filteredUsers);
-           };
-
-    getUsers();
-}, [search]);
-
-
+const handleSearch=(searchText)=>{
+  
+  const lowerCaseSearch = searchText.toLowerCase();
+  const filteredUsers = searchText
+      ? users.filter(user => 
+          user.name.toLowerCase().includes(lowerCaseSearch) || 
+          user.email.toLowerCase().includes(lowerCaseSearch)
+      )
+      : users;
+  setFilteredUsers(filteredUsers);
+  }
   return (
   <div   className="usersPage">
     <label>Search</label>
-    <input placeholder='Name or Email' onChange={(e)=>setSearch(e.target.value)}   type="text"/>
+    <input placeholder='Name or Email' onChange={(e)=>handleSearch(e.target.value)}   type="text"/>
     <button style={{float:"right",marginRight:"7px"}}>Add</button>
     {
-      users.map((user)=>(<User key={user._id} user={user}/>))
+      filteredUsers.map((user)=>(<User key={user._id} user={user}/>))
     }
     
   </div>
