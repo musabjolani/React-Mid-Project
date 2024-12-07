@@ -42,7 +42,9 @@ function User({user}) {
   return (
   <div  style={{...userStyle,borderColor:bordercolor}} onClick={()=>setToggleOthers(false)}>
     <div style={{display:"inline-block"}}>
-      <Link to={`/otherdata`}> ID</Link>1 <br/>
+      <Link to={`/otherdata/${user.id}`}> ID: </Link> 
+      <span> {user.id} </span>
+       <br/>
       <label>Name</label>
       <input style={{width:"170px"}} type="text" value={user.name} readOnly/> 
       <br/>

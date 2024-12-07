@@ -14,7 +14,7 @@ useEffect(() => {
   const getUsers = async () => {
     const { data } = await getAll(URL);
       
-    setUsers(data);
+    setUsers(data.sort((a, b) => a.id - b.id));
     setFilteredUsers(data);
   };
 

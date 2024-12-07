@@ -17,7 +17,7 @@ function App() {
       </div>
       <div style={{ flex:1 }}>
       <Routes>
-        <Route path="/otherdata" element={<OtherData />} >
+        <Route path="/otherdata/:id" element={<OtherData />} >
           <Route path="" element={<TodosAndPosts />} />
           <Route path="addtodo" element={<AddTodosAndPosts />} />
           <Route path="addpost" element={<AddPostsAndTodos />} />
