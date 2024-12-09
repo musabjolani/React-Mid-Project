@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const todoServ=require("../services/todoService") 
+const postServ=require("../services/postService") 
 
 router.get("/",async(req,res)=>{
  try{
-    const { userId } = req.query;
-    res.json(await todoServ.getTodosByUserId(userId))
+  const { userId } = req.query;
+    res.json(await postServ.getPostsByUserId(userId))
 } catch (error) {
     res.status(404).json(error.message);
 }
@@ -13,17 +13,18 @@ router.get("/",async(req,res)=>{
 
 router.get("/:id",async(req,res)=>{
  try{
-    const { id } = req.params;
-    res.json(await todoServ.getTodosById(id))
+  const { id } = req.params;
+    res.json(await postServ.getPostById(id))
 } catch (error) {
     res.status(404).json(error.message);
 }
 })
 
+
 router.post("/", async (req, res) => {
     try {
-      const todo = req.body;
-      res.json(await todoServ.addTodo(todo));
+      const post = req.body;
+      res.json(await postServ.addPost(post));
     } catch (error) {
       res.status(404).json(error.message);
     }
@@ -32,8 +33,8 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
     try {
       const { id } = req.params;
-      const todo = req.body;
-      res.json(await todoServ.updateTodo(id,todo));
+      const post = req.body;
+      res.json(await postServ.updatePost(id,post));
     } catch (error) {
       res.status(404).json(error.message);
     }
@@ -42,7 +43,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
       const { id } = req.params;
-      res.json(await todoServ.deleteTodo(id));
+      res.json(await postServ.deletePost(id));
     } catch (error) {
       res.status(404).json(error.message);
     }

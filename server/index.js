@@ -3,6 +3,7 @@ const express =require("express");
 const cors =require("cors");
 const userRouter =require("./controllers/userController")
 const todoRouter =require("./controllers/todoController")
+const postRouter =require("./controllers/postController")
 const connectDB=require("./config/db");
 
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use("/", express.json());
 app.use("/users", userRouter);
 app.use("/todos", todoRouter);
+app.use("/posts", postRouter);
 
 connectDB();
 
