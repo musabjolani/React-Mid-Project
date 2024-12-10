@@ -6,7 +6,7 @@ import { getAll } from './utils/dbUtils';
 
 function User({user}) {
   
-  const URL =`http://localhost:3300/todos/${user.id}`;
+  const URL =`http://localhost:3300/todos?userId=${user.id}`;
 
   const [bordercolor,setBorderColor]=useState("red");
   const [toggleOthers,setToggleOthers]=useState(false);

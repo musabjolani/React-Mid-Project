@@ -1,6 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 
-const getAll = (url) => {return axios.get(url)};
+const baseURL = "http://localhost:3300";
 
-export {getAll}
+const getAll = (url) => {
+  return axios.get(url);
+};
 
+const updateById = async (url, data) => {
+  await axios.put(url, data);
+};
+export { baseURL, getAll, updateById };
