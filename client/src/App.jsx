@@ -21,6 +21,7 @@ function App() {
             <Route path="addpost" element={<AddPostsAndTodos />} />
             <Route path="adduser" element={<AddUser />} />
           </Route>
+          <Route path="*" element={<OtherData />} />
         </Routes>
       </div>
     </div>

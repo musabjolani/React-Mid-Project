@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Todo from "./Todo";
 import { baseURL, getAll } from "./utils/dbUtils";
+import { useNavigate } from "react-router-dom";
 
 function Todos({ userId }) {
   const URL = `${baseURL}/todos?userId=${userId}`;
@@ -15,6 +16,7 @@ function Todos({ userId }) {
     overflow: "scroll",
     border: "2px solid black",
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getTodos = () => {
@@ -29,7 +31,12 @@ function Todos({ userId }) {
     <>
       <div style={{ marginTop: "3px" }}>
         <span style={{ marginLeft: "8px" }}>Todos User {userId}</span>
-        <button style={{ float: "right", marginRight: "0px" }}>Add</button>
+        <button
+          style={{ float: "right", marginRight: "0px" }}
+          onClick={() => navigate("addtodo")}
+        >
+          Add
+        </button>
       </div>
       <div style={TodosStyle}>
         {todos.map((todo) => (
