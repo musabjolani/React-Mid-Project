@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Link } from "react-router";
-import { baseURL, getAll, updateById } from "./utils/dbUtils";
+import { baseURL, deleteById, getAll, updateById } from "./utils/dbUtils";
 
 function User({ user }) {
   const URLtoGetTodos = `${baseURL}/todos?userId=${user.id}`;
   const URLpostUser = `${baseURL}/users/${user._id}`;
+  const URLdeleteUser = `${baseURL}/users/${user._id}`;
 
   const [bordercolor, setBorderColor] = useState("red");
   const [toggleOthers, setToggleOthers] = useState(false);
@@ -16,6 +17,9 @@ function User({ user }) {
   const IsTasksCompleted = (todos) => {
     return todos.every((task) => task.completed === true);
   };
+  const confirmMessage =
+    "Deleting this user will also permanently delete all posts and todos associated with them. This action cannot be undone. Are you sure you want to proceed?";
+
   useEffect(() => {
     const getTodos = async () => {
       const { data } = await getAll(URLtoGetTodos);
@@ -115,7 +119,17 @@ function User({ user }) {
         <div
           style={{ display: "inline-block", width: "100%", marginTop: "8px" }}
         >
-          <button style={{ float: "right" }}>Delete</button>
+          <button
+            style={{ float: "right" }}
+            onClick={(e) => {
+              e.preventDefault();
+
+              if (window.confirm(confirmMessage))
+                deleteById(URLdeleteUser, currentUser._id);
+            }}
+          >
+            Delete
+          </button>
           <button
             style={{ float: "right", marginRight: "5px" }}
             onClick={(e) => {
