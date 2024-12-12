@@ -1,11 +1,9 @@
-
-import { Outlet } from 'react-router';
-import './App.css'
+import { Outlet, useParams } from "react-router";
+import "./App.css";
 
 function OtherData() {
-  return (
-    <Outlet></Outlet>
-  )
+  const { userId } = useParams();
+  return <Outlet context={userId}></Outlet>;
 }
 
-export default OtherData
+export default OtherData;

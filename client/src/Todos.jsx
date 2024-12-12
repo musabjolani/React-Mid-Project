@@ -1,35 +1,50 @@
+import { useEffect, useState } from "react";
+import "./App.css";
+import Todo from "./Todo";
+import { baseURL, getAll } from "./utils/dbUtils";
+import { useNavigate } from "react-router-dom";
 
-import './App.css'
-import Todo from './Todo';
+function Todos({ userId }) {
+  const URL = `${baseURL}/todos?userId=${userId}`;
+  const [todos, setTodos] = useState([]);
 
-function OtherData() {
-  
-  const TodosStyle=
-  {
-    height:"160px",
+  const TodosStyle = {
+    height: "160px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     overflow: "scroll",
-     border :"2px solid black"
-  }
+    border: "2px solid black",
+  };
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const getTodos = () => {
+      getAll(URL).then((result) => {
+        setTodos(result.data);
+      });
+    };
+    getTodos();
+  }, [userId]);
 
   return (
-  <>      
-    <div style={{marginTop:"3px"}}>
-      <span style={{marginLeft:"8px"}}>Todos User 1</span>
-      <button style={{float:"right",marginRight:"0px"}}>Add</button>
-    </div>
-    <div style={TodosStyle}>
-      <Todo></Todo>
-      <Todo></Todo>
-      <Todo></Todo>
-    </div>
-  </>
-
-    
-  )
+    <>
+      <div style={{ marginTop: "3px" }}>
+        <span style={{ marginLeft: "8px" }}>Todos User {userId}</span>
+        <button
+          style={{ float: "right", marginRight: "0px" }}
+          onClick={() => navigate("addtodo")}
+        >
+          Add
+        </button>
+      </div>
+      <div style={TodosStyle}>
+        {todos.map((todo) => (
+          <Todo key={todo._id} todo={todo}></Todo>
+        ))}
+      </div>
+    </>
+  );
 }
 
-export default OtherData
+export default Todos;

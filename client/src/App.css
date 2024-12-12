@@ -1,31 +1,23 @@
 #root {
-
-  width:650px;
-  height:350px;
+  width: 650px;
+  height: 350px;
   max-height: 550px;
   margin: 30px;
   padding-top: 2rem;
   padding-left: 1rem;
-  
 }
 
-input[type=text]
-{
-  width:120px;
-  
-
+input[type="text"] {
+  width: 120px;
 }
 
-.usersPage
-{
+.usersPage {
   border-radius: 20px;
-  border:1.5px solid grey;
- overflow: scroll;
+  border: 1.5px solid grey;
+  overflow: scroll;
   padding: 0.5rem;
   height: 420px;
-  
 }
-
 
 .logo {
   height: 6em;
@@ -38,6 +30,30 @@ input[type=text]
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 250px;
+
+  background-color: rgb(230, 232, 214);
+  color: black;
+  text-align: left;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  margin: 10px 0px 0px -150px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 
 @keyframes logo-spin {
