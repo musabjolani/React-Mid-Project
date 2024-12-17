@@ -37,7 +37,7 @@ function AddPost({ userId }) {
 
   return (
     <form style={{ marginTop: "30px" }} onSubmit={(e) => handleSubmit(e)}>
-      <span style={{ marginLeft: "8px" }}>New Post User- 1</span>
+      <span style={{ marginLeft: "8px" }}>New Post User- {userId}</span>
       <div style={todoStyle}>
         <div>
           <label>Title</label>

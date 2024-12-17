@@ -4,7 +4,7 @@ import Todo from "./Todo";
 import { baseURL, getAll } from "./utils/dbUtils";
 import { useNavigate } from "react-router-dom";
 
-function Todos({ userId }) {
+function Todos({ userId, updateTodo }) {
   const URL = `${baseURL}/todos?userId=${userId}`;
   const [todos, setTodos] = useState([]);
 
@@ -33,14 +33,14 @@ function Todos({ userId }) {
         <span style={{ marginLeft: "8px" }}>Todos User {userId}</span>
         <button
           style={{ float: "right", marginRight: "0px" }}
-          onClick={() => navigate("addtodo")}
+          onClick={() => navigate(`/otherdata/addtodo/${userId}`)}
         >
           Add
         </button>
       </div>
       <div style={TodosStyle}>
         {todos.map((todo) => (
-          <Todo key={todo._id} todo={todo}></Todo>
+          <Todo key={todo._id} todo={todo} updateTodo={updateTodo}></Todo>
         ))}
       </div>
     </>

@@ -3,20 +3,15 @@ import "./App.css";
 import { Link } from "react-router";
 import { baseURL, deleteById, getAll, updateById } from "./utils/dbUtils";
 
-function User({ user }) {
+function User({ user, selUserId, IsTasksCompleted, backgroundColor }) {
   const URLtoGetTodos = `${baseURL}/todos?userId=${user.id}`;
   const URLpostUser = `${baseURL}/users/${user._id}`;
   const URLdeleteUser = `${baseURL}/users/${user._id}`;
 
-  const [bordercolor, setBorderColor] = useState("red");
   const [toggleOthers, setToggleOthers] = useState(false);
-
   const [todos, setTodos] = useState({});
   const [currentUser, setCurrentUser] = useState({});
 
-  const IsTasksCompleted = (todos) => {
-    return todos.every((task) => task.completed === true);
-  };
   const confirmMessage =
     "Deleting this user will also permanently delete all posts and todos associated with them. This action cannot be undone. Are you sure you want to proceed?";
 
@@ -24,7 +19,6 @@ function User({ user }) {
     const getTodos = async () => {
       const { data } = await getAll(URLtoGetTodos);
       setTodos(data);
-      setBorderColor(IsTasksCompleted(data) ? "green" : "red");
     };
     setCurrentUser(user || {});
     getTodos();
@@ -41,11 +35,24 @@ function User({ user }) {
   return (
     Object.keys(currentUser).length > 0 && (
       <div
-        style={{ ...userStyle, borderColor: bordercolor }}
+        style={{
+          ...userStyle,
+          borderColor: IsTasksCompleted(user.todos) ? "green" : "red",
+          backgroundColor: backgroundColor,
+        }}
         // onClick={() => setToggleOthers(false)}
       >
         <div style={{ display: "inline-block" }}>
-          <Link to={`/otherdata/${currentUser.id}`}> ID: </Link>
+          <Link to={`/otherdata/${currentUser.id}`}>
+            <span
+              onClick={() => {
+                selUserId(currentUser.id);
+              }}
+            >
+              {" "}
+              ID:{" "}
+            </span>
+          </Link>
           <span> {currentUser.id} </span>
           <br />
           <label>Name</label>
@@ -123,7 +130,6 @@ function User({ user }) {
             style={{ float: "right" }}
             onClick={(e) => {
               e.preventDefault();
-
               if (window.confirm(confirmMessage))
                 deleteById(URLdeleteUser, currentUser._id);
             }}

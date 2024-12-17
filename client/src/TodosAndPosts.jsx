@@ -1,17 +1,17 @@
-import { useOutletContext } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./App.css";
-
 import Posts from "./Posts";
 import Todos from "./Todos";
 
-function TodosAndPosts() {
-  const userId = useOutletContext();
-
+function TodosAndPosts({ updateTodo }) {
+  const { userId } = useParams();
   return (
-    <div style={{ marginTop: "15px" }}>
-      <Todos userId={userId}></Todos>
-      <Posts userId={userId}></Posts>
-    </div>
+    userId !== 0 && (
+      <div style={{ marginTop: "15px" }}>
+        <Todos userId={userId} updateTodo={updateTodo}></Todos>
+        <Posts userId={userId}></Posts>
+      </div>
+    )
   );
 }
 
