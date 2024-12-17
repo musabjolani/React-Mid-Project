@@ -3,7 +3,7 @@ import "./App.css";
 import { useState } from "react";
 import { addData, baseURL } from "./utils/dbUtils";
 
-function AddTodo({ userId }) {
+function AddTodo({ userId, AddTodoToUser }) {
   const todoStyle = {
     height: "160px",
     display: "flex",
@@ -30,6 +30,7 @@ function AddTodo({ userId }) {
 
     if (newErrors.length > 0) return;
     addData(URL, todo);
+    AddTodoToUser(userId, todo);
     setTodo({ ...todo, title: "" });
   };
 

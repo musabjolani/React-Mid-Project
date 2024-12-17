@@ -6,6 +6,21 @@ const getAllUsers = () => {
   return User.find();
 };
 
+const getUsersWithTodos = async () => {
+  // Fetch users and populate todos
+  const users = await User.aggregate([
+    {
+      $lookup: {
+        from: "todos",
+        localField: "id",
+        foreignField: "userId",
+        as: "todos",
+      },
+    },
+  ]);
+  return users;
+};
+
 const getUserById = (id) => {
   return User.findById(id);
 };
@@ -42,4 +57,11 @@ const deleteUser = async (id) => {
   return "User Deleted ";
 };
 
-module.exports = { getAllUsers, getUserById, addUser, updateUser, deleteUser };
+module.exports = {
+  getAllUsers,
+  getUsersWithTodos,
+  getUserById,
+  addUser,
+  updateUser,
+  deleteUser,
+};

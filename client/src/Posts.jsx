@@ -31,7 +31,7 @@ function Posts({ userId }) {
       <span style={{ marginLeft: "8px" }}>Posts User- {userId}</span>
       <button
         style={{ float: "right", marginRight: "0px" }}
-        onClick={() => navigate("addpost")}
+        onClick={() => navigate(`/otherdata/addpost/${userId}`)}
       >
         Add
       </button>

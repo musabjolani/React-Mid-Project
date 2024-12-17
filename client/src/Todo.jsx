@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { baseURL, updateById } from "./utils/dbUtils";
 
-function Todo({ todo }) {
+function Todo({ todo, updateTodo }) {
   const labelWidth = "85px";
   const URL = `${baseURL}/todos/${todo._id}`;
   const [task, setTask] = useState({});
@@ -40,6 +40,7 @@ function Todo({ todo }) {
             onClick={() => {
               updateById(URL, { completed: true });
               setTask({ ...task, completed: true });
+              updateTodo(task.userId, task._id, { ...task, completed: true });
             }}
           >
             Mark Completed

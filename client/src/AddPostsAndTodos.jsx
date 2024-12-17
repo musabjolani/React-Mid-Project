@@ -1,10 +1,10 @@
 import "./App.css";
 import AddPost from "./AddPost";
 import Todos from "./Todos";
-import { useOutletContext } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function AddPostsAndTodos() {
-  const userId = useOutletContext();
+  const { userId } = useParams();
   return (
     <div style={{ marginTop: "15px" }}>
       <Todos userId={userId}></Todos>
